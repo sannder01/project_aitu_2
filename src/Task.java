@@ -1,9 +1,6 @@
 import java.time.LocalDate;
 
-/**
- * Enhanced Task entity with category support
- * Requirement #7: Categories for entities
- */
+
 public class Task {
     private int id;
     private int workerId;

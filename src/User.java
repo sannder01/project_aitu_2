@@ -1,7 +1,4 @@
-/**
- * User entity with role-based access control
- * Requirement #5: Role Management
- */
+
 public class User {
     private int id;
     private String username;

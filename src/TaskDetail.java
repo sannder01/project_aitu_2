@@ -1,10 +1,6 @@
 import java.time.LocalDate;
 
-/**
- * Data Transfer Object for full task description with JOIN data
- * Requirement #1: Implementation of JOINs
- * SOLID: Single Responsibility - represents combined task data
- */
+
 public class TaskDetail {
     // Task fields
     private int taskId;

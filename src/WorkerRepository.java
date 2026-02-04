@@ -3,12 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Worker repository with validation
- * Requirement #6: Data validation
- * Requirement #3: Lambda expressions
- * SOLID: Single Responsibility - handles only worker data access
- */
+
 public class WorkerRepository {
 
     public void addWorker(Worker worker) throws ValidationException {
@@ -60,20 +55,14 @@ public class WorkerRepository {
         return workers;
     }
 
-    /**
-     * Gets workers by position using lambda expressions
-     * Requirement #3: Lambda expressions
-     */
+
     public List<Worker> getWorkersByPosition(String position) {
         return getAllWorkers().stream()
             .filter(worker -> worker.getPosition().equalsIgnoreCase(position))
             .collect(Collectors.toList());
     }
 
-    /**
-     * Searches workers by name using lambda expressions
-     * Requirement #3: Lambda expressions
-     */
+
     public List<Worker> searchWorkersByName(String namePattern) {
         return getAllWorkers().stream()
             .filter(worker -> worker.getName().toLowerCase()

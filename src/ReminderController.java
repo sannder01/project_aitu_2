@@ -2,23 +2,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Enhanced controller with all requirements
- * - Requirement #1: JOINs (getFullTaskDescription)
- * - Requirement #2: Design patterns (Singleton in Database)
- * - Requirement #3: Lambda expressions (filtering methods)
- * - Requirement #4: SOLID principles
- * - Requirement #5: Role management (secured methods)
- * - Requirement #6: Data validation
- * - Requirement #7: Categories
- * 
- * SOLID Principles:
- * - Single Responsibility: Controller handles only coordination between UI and business logic
- * - Open/Closed: Can extend with new features without modifying existing code
- * - Liskov Substitution: All repository interfaces could be abstracted
- * - Interface Segregation: Each repository handles specific entity
- * - Dependency Inversion: Depends on abstractions (repositories), not concrete implementations
- */
+
 public class ReminderController {
     private final WorkerRepository workerRepo = new WorkerRepository();
     private final TaskRepository taskRepo = new TaskRepository();
@@ -30,10 +14,7 @@ public class ReminderController {
 
     // ========== Authentication ==========
     
-    /**
-     * Login user
-     * Requirement #5: Role Management
-     */
+
     public boolean login(String username, String password) {
         Optional<User> user = userRepo.authenticate(username, password);
         if (user.isPresent()) {
@@ -55,13 +36,9 @@ public class ReminderController {
         return currentUser;
     }
 
-    // ========== Worker Management (secured) ==========
+
     
-    /**
-     * Add worker - requires Manager or Admin role
-     * Requirement #5: Secured endpoint
-     * Requirement #6: Data validation
-     */
+
     public void addWorker(String name, String position, String email) {
         try {
             securityService.requireAddWorkerPermission(currentUser);
@@ -74,10 +51,6 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Delete worker - requires Admin role
-     * Requirement #5: Secured endpoint
-     */
     public void deleteWorker(int id) {
         try {
             securityService.requireDeleteWorkerPermission(currentUser);
@@ -90,10 +63,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show workers - all authenticated users can view
-     * Requirement #5: Secured endpoint
-     */
+
     public void showWorkers() {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -108,10 +78,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Search workers by position using lambda expressions
-     * Requirement #3: Lambda expressions
-     */
+
     public void searchWorkersByPosition(String position) {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -126,13 +93,7 @@ public class ReminderController {
         }
     }
 
-    // ========== Task Management (secured) ==========
-    
-    /**
-     * Add task - requires Editor, Manager, or Admin role
-     * Requirement #5: Secured endpoint
-     * Requirement #6: Data validation
-     */
+
     public void addTask(int workerId, Integer categoryId, String title, 
                        String description, LocalDate deadline, String priority) {
         try {
@@ -147,10 +108,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Delete task - requires Editor, Manager, or Admin role
-     * Requirement #5: Secured endpoint
-     */
+
     public void deleteTask(int id) {
         try {
             securityService.requireTaskModificationPermission(currentUser);
@@ -163,11 +121,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Update task status - requires Editor, Manager, or Admin role
-     * Requirement #5: Secured endpoint
-     * Requirement #6: Data validation
-     */
+
     public void updateTaskStatus(int taskId, String status) {
         try {
             securityService.requireTaskModificationPermission(currentUser);
@@ -180,9 +134,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show all tasks - all authenticated users can view
-     */
+
     public void showTasks() {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -197,11 +149,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show full task description with JOIN
-     * Requirement #1: Implementation of JOINs
-     * Similar to GetFullOrderDescription in requirements
-     */
+
     public void showFullTaskDescription(int taskId) {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -218,10 +166,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show all tasks with full details using JOIN
-     * Requirement #1: JOINs
-     */
+
     public void showAllTasksWithDetails() {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -236,10 +181,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show tasks by status using lambda expressions
-     * Requirement #3: Lambda expressions
-     */
+
     public void showTasksByStatus(String status) {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -254,10 +196,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show overdue tasks using lambda expressions
-     * Requirement #3: Lambda expressions
-     */
+
     public void showOverdueTasks() {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -273,10 +212,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show tasks by priority using lambda expressions
-     * Requirement #3: Lambda expressions
-     */
+
     public void showTasksByPriority(String priority) {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -291,12 +227,7 @@ public class ReminderController {
         }
     }
 
-    // ========== Category Management ==========
-    
-    /**
-     * Add category - requires Editor, Manager, or Admin role
-     * Requirement #7: Categories
-     */
+
     public void addCategory(String name, String description, String color) {
         try {
             securityService.requireTaskModificationPermission(currentUser);
@@ -309,10 +240,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Delete category - requires Manager or Admin role
-     * Requirement #7: Categories
-     */
+
     public void deleteCategory(int id) {
         try {
             securityService.requireManagerOrHigher(currentUser);
@@ -325,10 +253,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show all categories
-     * Requirement #7: Categories
-     */
+
     public void showCategories() {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -343,10 +268,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show tasks by category with JOIN
-     * Requirement #1: JOINs, #7: Categories
-     */
+
     public void showTasksByCategory(int categoryId) {
         try {
             securityService.requireAuthenticated(currentUser);
@@ -363,12 +285,7 @@ public class ReminderController {
         }
     }
 
-    // ========== User Management (Admin only) ==========
-    
-    /**
-     * Add user - Admin only
-     * Requirement #5: Role Management
-     */
+
     public void addUser(String username, String password, String email, UserRole role) {
         try {
             securityService.requireAdmin(currentUser);
@@ -381,10 +298,7 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Show all users - Admin only
-     * Requirement #5: Role Management
-     */
+
     public void showUsers() {
         try {
             securityService.requireAdmin(currentUser);
@@ -399,10 +313,6 @@ public class ReminderController {
         }
     }
 
-    /**
-     * Update user role - Admin only
-     * Requirement #5: Role Management
-     */
     public void updateUserRole(int userId, UserRole newRole) {
         try {
             securityService.requireAdmin(currentUser);

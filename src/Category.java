@@ -1,8 +1,4 @@
-/**
- * Category entity for task categorization
- * Requirement #7: Add categories for entities
- * SOLID: Single Responsibility - represents only category data
- */
+
 public class Category {
     private int id;
     private String name;

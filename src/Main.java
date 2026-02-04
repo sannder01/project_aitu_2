@@ -1,11 +1,6 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-
-/**
- * Main application with comprehensive menu
- * Demonstrates all 7 requirements
- */
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

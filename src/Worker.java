@@ -1,7 +1,4 @@
-/**
- * Worker entity
- * SOLID: Single Responsibility - represents only worker data
- */
+
 public class Worker {
     private int id;
     private String name;

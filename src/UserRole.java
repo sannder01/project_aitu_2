@@ -1,7 +1,4 @@
-/**
- * User roles for role-based access control
- * Requirement #5: Role Management
- */
+
 public enum UserRole {
     ADMIN("Admin"),
     MANAGER("Manager"),

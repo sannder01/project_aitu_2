@@ -2,11 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Category repository
- * Requirement #7: Add categories for entities
- * SOLID: Single Responsibility - handles only category data access
- */
+
 public class CategoryRepository {
 
     public void addCategory(Category category) throws ValidationException {

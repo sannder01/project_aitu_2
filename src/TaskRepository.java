@@ -61,9 +61,7 @@ public class TaskRepository {
         }
     }
 
-    /**
-     * Gets all tasks (simple query without JOIN)
-     */
+
     public List<Task> getAllTasks() {
         List<Task> tasks = new ArrayList<>();
         String sql = "SELECT * FROM tasks";
@@ -79,11 +77,7 @@ public class TaskRepository {
         return tasks;
     }
 
-    /**
-     * Gets full task description with JOIN (worker and category data)
-     * Requirement #1: Implementation of JOINs
-     * Similar to GetFullOrderDescription example in requirements
-     */
+
     public Optional<TaskDetail> getFullTaskDescription(int taskId) throws ValidationException {
         Validator.validateId(taskId);
         
@@ -123,10 +117,7 @@ public class TaskRepository {
         return Optional.empty();
     }
 
-    /**
-     * Gets all tasks with full details using JOIN
-     * Requirement #1: Implementation of JOINs
-     */
+
     public List<TaskDetail> getAllTasksWithDetails() {
         List<TaskDetail> taskDetails = new ArrayList<>();
         String sql = """
@@ -163,10 +154,7 @@ public class TaskRepository {
         return taskDetails;
     }
 
-    /**
-     * Gets tasks by category with JOIN
-     * Requirement #1: JOINs, #7: Categories
-     */
+
     public List<TaskDetail> getTasksByCategory(int categoryId) throws ValidationException {
         Validator.validateId(categoryId);
         
@@ -208,9 +196,7 @@ public class TaskRepository {
         return taskDetails;
     }
 
-    /**
-     * Updates task status
-     */
+
     public void updateTaskStatus(int taskId, String status) throws ValidationException {
         Validator.validateId(taskId);
         Validator.validateStatus(status);
@@ -226,20 +212,14 @@ public class TaskRepository {
         }
     }
 
-    /**
-     * Gets tasks filtered by status using lambda expressions
-     * Requirement #3: Lambda expressions
-     */
+
     public List<Task> getTasksByStatus(String status) {
         return getAllTasks().stream()
             .filter(task -> task.getStatus().equalsIgnoreCase(status))
             .collect(Collectors.toList());
     }
 
-    /**
-     * Gets overdue tasks using lambda expressions
-     * Requirement #3: Lambda expressions
-     */
+
     public List<Task> getOverdueTasks() {
         LocalDate today = LocalDate.now();
         return getAllTasks().stream()
@@ -249,10 +229,7 @@ public class TaskRepository {
             .collect(Collectors.toList());
     }
 
-    /**
-     * Gets tasks by priority using lambda expressions
-     * Requirement #3: Lambda expressions
-     */
+
     public List<Task> getTasksByPriority(String priority) {
         return getAllTasks().stream()
             .filter(task -> task.getPriority().equalsIgnoreCase(priority))

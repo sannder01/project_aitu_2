@@ -1,11 +1,7 @@
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
-/**
- * Validation utility class
- * Requirement #6: Data validation
- * SOLID: Single Responsibility - handles only validation logic
- */
+
 public class Validator {
     private static final Pattern EMAIL_PATTERN = 
         Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
@@ -13,11 +9,7 @@ public class Validator {
     private static final Pattern NAME_PATTERN = 
         Pattern.compile("^[A-Za-z\\s]{2,50}$");
 
-    /**
-     * Validates email format
-     * @param email email to validate
-     * @throws ValidationException if email is invalid
-     */
+
     public static void validateEmail(String email) throws ValidationException {
         if (email == null || email.trim().isEmpty()) {
             throw new ValidationException("Email cannot be empty");
@@ -27,11 +19,7 @@ public class Validator {
         }
     }
 
-    /**
-     * Validates name (worker, user)
-     * @param name name to validate
-     * @throws ValidationException if name is invalid
-     */
+
     public static void validateName(String name) throws ValidationException {
         if (name == null || name.trim().isEmpty()) {
             throw new ValidationException("Name cannot be empty");
@@ -44,11 +32,7 @@ public class Validator {
         }
     }
 
-    /**
-     * Validates task title
-     * @param title title to validate
-     * @throws ValidationException if title is invalid
-     */
+
     public static void validateTitle(String title) throws ValidationException {
         if (title == null || title.trim().isEmpty()) {
             throw new ValidationException("Title cannot be empty");
@@ -58,11 +42,7 @@ public class Validator {
         }
     }
 
-    /**
-     * Validates deadline is not in the past
-     * @param deadline deadline to validate
-     * @throws ValidationException if deadline is invalid
-     */
+
     public static void validateDeadline(LocalDate deadline) throws ValidationException {
         if (deadline == null) {
             throw new ValidationException("Deadline cannot be null");
@@ -72,11 +52,7 @@ public class Validator {
         }
     }
 
-    /**
-     * Validates task status
-     * @param status status to validate
-     * @throws ValidationException if status is invalid
-     */
+
     public static void validateStatus(String status) throws ValidationException {
         if (status == null || status.trim().isEmpty()) {
             throw new ValidationException("Status cannot be empty");
@@ -94,11 +70,7 @@ public class Validator {
         }
     }
 
-    /**
-     * Validates task priority
-     * @param priority priority to validate
-     * @throws ValidationException if priority is invalid
-     */
+
     public static void validatePriority(String priority) throws ValidationException {
         if (priority == null || priority.trim().isEmpty()) {
             throw new ValidationException("Priority cannot be empty");
@@ -116,11 +88,7 @@ public class Validator {
         }
     }
 
-    /**
-     * Validates positive ID
-     * @param id ID to validate
-     * @throws ValidationException if ID is invalid
-     */
+
     public static void validateId(int id) throws ValidationException {
         if (id <= 0) {
             throw new ValidationException("ID must be a positive number");

@@ -2,10 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Database connection manager implementing Singleton pattern
- * SOLID Principle: Single Responsibility - manages only database connections
- */
+
 public class Database {
     private static Database instance;
     private static final String URL = "jdbc:postgresql://localhost:5432/project_aitu";
@@ -23,10 +20,7 @@ public class Database {
     // Private constructor for Singleton pattern
     private Database() {}
 
-    /**
-     * Singleton pattern implementation
-     * @return single instance of Database
-     */
+
     public static synchronized Database getInstance() {
         if (instance == null) {
             instance = new Database();

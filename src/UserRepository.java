@@ -3,11 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * User repository for authentication and authorization
- * Requirement #5: Role Management
- * SOLID: Single Responsibility - handles only user data access
- */
+
 public class UserRepository {
 
     public void addUser(User user) throws ValidationException {
@@ -61,10 +57,7 @@ public class UserRepository {
         return users;
     }
 
-    /**
-     * Authenticates a user by username and password
-     * In production, use hashed passwords!
-     */
+
     public Optional<User> authenticate(String username, String password) {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (Connection conn = Database.getInstance().getConnection();
@@ -88,9 +81,7 @@ public class UserRepository {
         return Optional.empty();
     }
 
-    /**
-     * Updates user role (Admin only operation)
-     */
+
     public void updateUserRole(int userId, UserRole newRole) throws ValidationException {
         Validator.validateId(userId);
         
